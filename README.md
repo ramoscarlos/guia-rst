@@ -8,7 +8,8 @@ Un libro de referencia para el lenguaje de marcado reStructuredText.
 
 Copyright © 2021 [Carlos Ramos](http://ramoscarlos.com).
 
-[![Portada del libro](cover.jpg)](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1623616099l/58328601._SY475_.jpg)
+<a href="https://leanpub.com/rst" target="_blank"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1623616099l/58328601._SY475_.jpg" height="200px"></a>
+
 
 
 ## Sinopsis
@@ -20,7 +21,7 @@ Este libro es una guía para aquellas personas interesadas en utilizar reStructu
 
 
 Este repositorio cuenta con los archivos utilizados para crear el libro y el sitio web. El libro puede ser obtenido en [Leanpub](https://leanpub.com/rst) de manera gratuita, aunque siempre serán bienvenidas las compras a través de la plataforma :D.
-
+	
 
 ## Contribuciones
 
