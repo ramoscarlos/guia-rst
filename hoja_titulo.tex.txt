@@ -1,0 +1,24 @@
+% Hoja con título y autor solamente.
+{
+\newpage % Empezar en una nueva página.
+\thispagestyle{empty} % Remover numeración de esta página solamente.
+
+\fontfamily{cmr}\selectfont
+
+\centering
+
+\vspace*{3cm}
+
+\noindent\scalebox{5}{Guía}\\
+\vspace{3pt}
+\scalebox{1.25}{de reStructuredText}
+
+\vspace*{6cm}
+
+\scalebox{1.10}{por Carlos Ramos}
+
+\vspace*{3cm}
+
+\includegraphics[width=2.5cm]{LeanPub.pdf}
+
+}

@@ -1,0 +1,22 @@
+\newpage % Empezar en una nueva página.
+
+\vspace*{0.5in} % Espacio vertical previo a empezar la dedicatoria.
+\begin{flushright} % Entorno que alinea el texto a la derecha.
+\textit{ % Itálicas.
+	Para Alberto, Lorenza, y Miriam\\
+	aquellos que a pesar de la vida y los años\\
+	siguen brindando el calor de familia\\
+}
+
+\vspace{0.5in} % Espacio entre dedicatorias.
+\textit{ % Itálicas de segunda dedicatoria.
+	Y a mi diosa maya, Ixchel\\
+	que para este segundo libro ya debe saber\\
+	la cantidad de ideas que acuden a mi mente\\
+	(y a cuántas les hago caso)
+}
+\end{flushright} % Fin de alineado a la derecha.
+
+\clearpage
+
+\null\newpage
