@@ -50,7 +50,7 @@ Documentos
 
 Además de generar el sitio, puedes convertir a PDF (aunque esto ya lo esperabas gracias al editor en línea). Esto lo hace a través de LaTeX. Si estás familiarizado con ese lenguaje, también puedes personalizar el formato de salida de tu PDF.
 
-Imagina: poder crear tanto el sitio web de tu contenido, como todo un PDF que puede ser un libro. Todo con el mismo código fuente.
+Imagina: poder crear tanto el sitio web de tu contenido, como todo un PDF que puede ser un libro. Todo con el mismo código fuente. Eso es lo que hice para este libro que ahora lees. El PDF lo puedes encontrar en LeanPub_, mientras que la versión en HTML la puedes leer a través de mi subdominio `rst.ramoscarlos.com`_.
 
 Claro, no estoy diciendo que harás un documento tan espectacular como te lo permiten todas las opciones de Microsoft Word, o incluso otros programas especializados para la edición de PDFs, pero este libro fue creado con Sphinx, todo escrito en reStructuredText. ¿No crees que es genial?
 
@@ -106,3 +106,5 @@ Además, en conjunto con Sphinx, reST puede crear sitios web de documentación c
 .. _Sublime Text: https://www.sublimetext.com/
 .. _Read The Docs: https://readthedocs.org/
 .. _Write The Docs: https://www.writethedocs.org/
+.. _LeanPub: https://leanpub.com/rst/
+.. _rst.ramoscarlos.com: http://rst.ramoscarlos.com

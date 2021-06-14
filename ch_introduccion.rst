@@ -56,6 +56,6 @@ En caso de que encuentres algún problema en la obra, puedes `crear un problema`
 
 
 
-.. _GitHub: enlace_de_repo
-.. _CONTRIBUTING: enlace_de_archivo_contributing_en_el_repo
-.. _crear un problema: enlace_a_gihub_para_crear_issues
+.. _GitHub: https://github.com/ramoscarlos/guia-rst
+.. _CONTRIBUTING: https://github.com/ramoscarlos/guia-rst/blob/master/CONTRIBUTING.md
+.. _crear un problema: https://github.com/ramoscarlos/guia-rst/issues
