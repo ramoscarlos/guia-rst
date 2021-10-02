@@ -3,7 +3,7 @@ Primeros pasos
 
 
 
-Antes que nada, ¿qué es exactamente reStructuredText? Esto podemos definirlo en dos partes. La primera: reST es un lenguaje ligero de marcado de texto plano diseñado para ser fácil de leer y escribir. Vaaale.. y para aquellos ajenos a sistemas computacionales, ¿qué significa toda esa verborrea?
+Antes que nada, ¿qué es exactamente reStructuredText? Esto podemos definirlo en dos partes. La primera: reST es un lenguaje ligero de marcado de texto plano diseñado para ser fácil de leer y escribir. Sí, claro. Pero, para aquellos ajenos a sistemas computacionales, ¿qué significa toda esa verborrea?
 
 *Texto plano* quiere decir que lo puedes editar en el bloc de notas, en una caja de texto en el navegador, o incluso en Microsoft Word, si así lo deseas. El punto es que no necesitas un editor en particular, solo es texto. Si copias de un lado y pegas en otro no hay problema, porque el texto no tiene formato que no puedas ver. Como un ejemplo de esto, tenemos los siguientes dos enunciados:
 
@@ -37,13 +37,13 @@ Aquí es donde entra la segunda parte de la definición: reST es una herramienta
 
 
 
-Seamos claros, reST no es un formato que se vea bonito (es texto plano que no se ve tan feo). Lo que sí, es un lenguaje práctico que nos permite escribir de manera rápida, eficiente.
+Seamos claros, reST no es un formato que se vea bonito (es texto plano que no se ve tan feo). Lo que sí, es un lenguaje práctico que nos permite escribir de manera rápida y eficiente.
 
 No obstante, reST no está diseñado para ser el formato final. Generalmente contamos como formato de salida una página web o un documento en PDF, a algún otro, donde reST definitivamente no figura.
 
 Por lo tanto, necesitamos una forma de traducir lo que escribimos en reST al formato que de verdad queremos. Otra forma de decirlo es: sin un programa, herramienta, script, o lo que sea, que nos traduzca reST a un formato más común, reST es inútil.
 
-Y así es como llegamos a esta dualidad, reST es tanto la herramienta que nos permite convertir el lenguaje de marcado a un formato más conocido como el lenguaje de marcado a ser convertido. Esto se puede ver en la `figura 2.1`_.
+Y así es como llegamos a esta dualidad: reST es tanto la herramienta que nos permite convertir lo que escribimos a un formato más conocido, así como la definición del significado de los símbolos que posteriormente serán convertidos. Esto se puede ver en la `figura 2.1`_.
 
 .. _figura 2.1:
 
@@ -68,7 +68,7 @@ Editor en línea
 
 
 
-El diagrama de la figura 2.1 se reduce a una acción: utilizar un `editor en línea`_. En la `figura 2.2`_ se pueden apreciar dos de los elementos:
+El diagrama de la `figura 2.1`_ se reduce a una acción: utilizar un `editor en línea`_. En la `figura 2.2`_ se pueden apreciar dos de los elementos:
 
 #. El código reST del lado izquierdo.
 #. El producto final en HTML, del lado derecho.
@@ -82,6 +82,8 @@ El diagrama de la figura 2.1 se reduce a una acción: utilizar un `editor en lí
 	Figura 2.2: Editor en línea de reST.
 
 Detrás, en grandes servidores, corre el procesador de reST, y tu navegador se encarga de mostrar adecuadamente el HTML. Por tanto, podemos concluir que la explicación anterior solo fue un agregado cultural (de nada), pero de ahora en adelante solo utiliza el editor en  `http://rst.ninjs.org/?theme=nature <http://rst.ninjs.org/?theme=nature>`_.
+
+Llegados a este punto es necesario dejar en claro que, si deseas seguir los ejemplos que se plantean a lo largo del libro, requerirás de una computadora con conexión a Internet (no te preocupes, solo usaremos el `editor en línea`_ antes descrito).
 
 
 

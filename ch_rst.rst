@@ -24,7 +24,7 @@ una línea de texto
     una línea de texto
     (o un párrafo)
 
-Es decir, un salto de línea se reduce a solamente un espacio dentro de reST, por lo que para         crear           un nuevo párrafo se requiere una línea vacía entre ambos:
+Es decir, un salto de línea se reduce a solamente un espacio dentro de reST, por lo que para         crear           un nuevo párrafo se requiere una línea vacía entre ambos (o, lo que es lo mismo, dos saltos de línea):
 
 .. code-block:: rst
 
@@ -39,10 +39,6 @@ Esto nos lleva a hablar de ¿qué pasa si hay dos líneas en blanco? ¿o tres? �
 .. code-block:: rst
 
     Este       enunciado     con       mucho        espacio.
-
-.. raw:: latex
-
-    \newpage
 
 En realidad se muestra simplemente así:
 
@@ -100,15 +96,15 @@ Para que lo anterior se viera como una frase solamente fue necesario escribirlo 
 
     párrafo
 
-En otras palabras, un párrafo siempre está pegado al margen izquierdo y una frase siempre está indentada. No obstante, ¿qué se considera indentación? La indentación es cualquier número de espacios en blanco mayor a cero. Puede ser un espacio, cuatro, cincuenta, y el efecto sería el mismo.
+En otras palabras, un párrafo siempre está pegado al margen izquierdo y una frase siempre está indentada. No obstante, ¿qué se considera indentación? La indentación es cualquier número de espacios en blanco mayor a cero. Puede ser un espacio, cuatro, cincuenta, y el efecto sería el mismo (hablando de una sola línea).
 
-Si a la frase le queremos agregar el autor, podemos continuar escribiendo en la frase mientras no abandonemos la indentación:
+Si a la frase le queremos agregar el autor, podemos continuar escribiendo en la frase mientras no abandonemos la indentación. Es decir, todas las líneas que queramos agregar a nuestra cita deben tener la misma cantidad de espacios de indentación que la primera línea:
 
     Las tensiones no son entre las razas, sino entre las fuerzas de la justicia y la injusticia
 
     Martin Luther King
 
-¿Y si queremos colocar una frase dentro de otra frase? Simplemente creamos un nuevo nivel de indentación:
+¿Y si queremos colocar una frase dentro de otra frase? Simplemente creamos un nuevo nivel de indentación, lo que significa dar al menos un espacio más de indentación respecto al nivel anterior:
 
     Las tensiones no son entre las razas, sino entre las fuerzas de la justicia y la injusticia
 
@@ -132,6 +128,12 @@ Con este ejemplo de las citas vemos otras dos características importantes de re
 
 1. La indentación importa y tiene un significado.
 2. La indentación puede contener cualquier número de espacios.
+
+Es importante notar aquí la aparente contradicción: a reST no le importa la cantidad de espacios, pero una cantidad de espacios diferente puede dar lugar a otro nivel. ¿Por qué?
+
+Porque en un determinado nivel, no importa si la indentación es de dos o cuatro o cincuenta espacios. Pero, al momento de tener dos o más niveles, importa. Porque dos líneas con una indentación de cincuenta espacios es un solo nivel, mientras que una línea con cincuenta y una línea con sesenta son dos niveles diferentes.
+
+A la vez, una línea con cincuenta espacios y una línea con setenta espacios siguen siendo solo dos niveles de indentación. Es decir: no importa la cantidad de espacios que definan un determinado nivel, mientras sea una cantidad de espacios diferente a los otros niveles que tengas en tu texto.
 
 
 
@@ -163,7 +165,7 @@ Encabezados (títulos)
 
 
 
-En sí, un encabezado es una línea de texto que está seguida de una línea de símbolos iguales de al menos la misma longitud que el título. Por ejemplo, el título de este capítulo se escribió como:
+En sí, un encabezado es una línea de texto que está seguida de una línea de símbolos idénticos de al menos la misma longitud que el título. Por ejemplo, el título de este capítulo se escribió como:
 
 .. code-block:: rst
 
@@ -186,7 +188,7 @@ Por lo que bien podríamos poner el título del capítulo como:
     Sintaxis básica
     >>>>>>>>>>>>>>>
 
-No obstante, y aunque no es parte propiamente parte de reStructuredText si no de Sphinx, se sigue el siguiente estándar:
+No obstante, y aunque no es parte propiamente de reStructuredText si no de Sphinx, se sigue el siguiente estándar:
 
 - ``=``, para secciones.
 - ``-``, para subsecciones.
@@ -228,15 +230,11 @@ Lo anterior es equivalente a lo siguiente:
     Este es un subtítulo
     ====================
 
-.. raw:: latex
-
-    \newpage
-
-Aunque lo puedas hacer, y sea técnicamente correcto, es mejor limitarse a un patrón mental de referencia que sea consistente. Es decir, adoptar algo como: ``=`` es para títulos, ``-`` es para subtítulos, y ``^`` es para subsubtítulos, y otros más si llegas a necesitar aún más símbolos.
+Aunque lo puedas hacer, y sea técnicamente correcto, es mejor limitarse a un patrón mental de referencia que sea consistente. Es decir, adoptar algo como: ``=`` es para títulos, ``-`` es para subtítulos, y ``^`` es para subsubtítulos. Por supuesto, hay más símbolos aceptados para crear encabezados, en caso de que requieras más subdivisiones.
 
 
 
-Vale, vale, ¿pero qué pasa si la regla es de menor longitud?
+Vale, ¿pero qué pasa si la regla es de menor longitud?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -256,7 +254,7 @@ Comentarios
 
 
 
-Para escribir comentarios se inicia una línea solo con dos puntos y un espacio, y cualquier cosa después de ellas no se mostrará en el documento. Por ejemplo:
+Para escribir comentarios dentro del documento basta con iniciar una línea con dos puntos y un espacio, ya que cualquier cosa después de ellas no se mostrará. Por ejemplo:
 
 .. Esta línea es un comentario y no aparece en el texto transformado.
 
@@ -324,7 +322,7 @@ Es decir, no importa cuál de los tres símbolos utilices, el resultado será la
 
     WARNING: Bullet list ends without a blank line; unexpected unindent.
 
-¿Qué pasa aquí? El convertidor de reStructuredText sse confundió un poco. Espera que una lista tenga solo un símbolo, y si tiene dos cree que es por una de las siguientes dos razones:
+¿Qué pasa aquí? El convertidor de reStructuredText se confundió un poco. Espera que una lista tenga solo un símbolo, y si tiene dos cree que es por una de las siguientes dos razones:
 
 1. Espera que el segundo símbolo utilizado corresponda a otra lista independiente, pero de ser así, falta una línea que divida ambas listas (cosa que no pasó).
 2. Quieres hacer dos niveles, una lista dentro de otra, aunque para eso hace falta un poco de indentación (cosa que tampoco pasó).
@@ -341,10 +339,10 @@ Listas anidadas
 Ahora bien, si queremos una lista dentro de otra dentro de otra dentro de otra necesitamos seguir dos reglas de reST, y una agregada por LaTeX:
 
 1. Cada lista anidada debe estar separada por una línea vacía respecto a su lista madre, y los elementos sucesores de la lista madre.
-#. La indentación aquí no es arbitraria. La indentación del indicador de lista para los elementos de la lista anidada deben coincidir con el primer carácter del texto del elemento en la lista madre.
+#. La indentación aquí no es arbitraria. La indentación del indicador para los elementos de la lista anidada deben coincidir con el primer carácter del texto del elemento en la lista madre.
 #. Lo máximo que se permiten son cuatro niveles de anidamiento, al menos si quieres exportar tu documento a PDF a través de Sphinx/LaTeX sin configuración adicional.
 
-Primero que nada, el problema de una indentación arbitraria es que el texto se tomará como una cita/lista, lo que dependiendo del estilo puede resultar no agradable:
+Primero que nada, el problema de una indentación arbitraria es que el texto se tomará como una cita/lista. Dependiendo del estilo, puede no resultar agradable:
 
 + Primer nivel
 
@@ -374,10 +372,6 @@ Y generó lo siguiente en HTML:
         </li>
     </ul>
 
-.. raw:: latex
-
-    \newpage
-
 Por lo tanto, en este caso, el segundo nivel debe estar indentado dos espacios, para que el símbolo de la lista anidada esté alineado con la "P" inicial de la lista madre:
 
 .. code-block:: rst
@@ -404,19 +398,19 @@ Y el HTML es mucho más limpio, como se espera:
         </li>
     </ul>
 
-¿Y en qué afecta la presencia o ausencia de la línea en blanco? Eso depende. Visualmente en HTML, puede resultar casi lo mismo:
+¿Y en qué afecta la presencia o ausencia de la línea en blanco? Eso depende. Visualmente en HTML, puede resultar *casi* lo mismo (aunque en el PDF el primer nivel aparece en negritas):
 
 + Primer nivel
     + Segundo nivel
 
-Pero la lista sin la línea en blanco, es decir:
+Lo anterior se muestra así porque en el código no colocamos la línea en blanco, es decir:
 
 .. code-block:: rst
 
     + Primer nivel
         + Segundo nivel
 
-En realidad genera el siguiente código en HTML:
+Lo cual genera el siguiente código HTML:
 
 .. code-block:: html
 
@@ -429,11 +423,7 @@ En realidad genera el siguiente código en HTML:
         </dl></li>
     </ul>
 
-.. raw:: latex
-
-    \newpage
-
-Sea lo que sea, no estamos creando una lista simple (vale, es una lista de definiciones). En fin, el resumen sobre estas incongruencias es:
+Sea lo que sea lo anterior, no estamos creando una lista simple (vale, es una lista de definiciones). En fin, el resumen sobre estas incongruencias es:
 
 + Si te pasas de espacios tendrás una lista dentro de una cita.
 + Si no pones una línea entre las listas tendrás una lista de deficiones.
@@ -473,13 +463,11 @@ puede que recibas un error como:
 
 Por supuesto, ese problema no ocurre en el `editor en línea <http://rst.ninjs.org/?theme=nature>`_, donde se puede visualizar el HTML con tantos niveles anidados de lista como se desee, y exportar el contenido a PDF (aunque eso se debe a que usa otra librería que no es LaTeX para su conversión). Como sea, no es algo que deba preocuparte mientras funcione.
 
-.. raw:: latex
-
-    \newpage
-
 .. note::
 
-    Aunque previamente dijimos que por nivel se debe usar un símbolo, el ejemplo anterior no genera advertencias. En teoría, deberíamos tener una advertencia por no utilizar el mismo símbolo para las líneas 5 y 13, y otra más gracias a 3 y 15. Dado que no es así, resta decir que para las personas que lleguemos a leer la fuente sigue siendo mejor. Trata de ser consistente.
+    Aunque previamente dijimos que por nivel se debe usar un símbolo, el ejemplo anterior no genera advertencias. En teoría, deberíamos tener una advertencia por no utilizar el mismo símbolo para las líneas 5 y 13, y otra más gracias a 3 y 15 (por pertenecer al mismo nivel de anidamiento). Dado que no es así, resta decir que para las personas que lleguemos a leer la fuente sigue siendo mejor. Trata de ser consistente.
+
+
 
 ¿Y qué pasa con el espacio en blanco?
 """""""""""""""""""""""""""""""""""""
@@ -565,17 +553,13 @@ Cuyo código, que puedo jurar que intuyes, es el siguiente:
     A. Elemento.
     B. Elemento.
 
-Y, por último, tenemos otros dos formatos gracias a los números romanos, igual en minúscula o mayúscula:
+Y, por último, tenemos otros dos formatos gracias a los números romanos, igual en minúscula o mayúscula (al menos, en HTML, aunque el PDF se comporta un poco diferente):
 
 i. Romanos.
 ii. Romanos.
 
 IX. Romanos.
 X. Romanos.
-
-.. raw:: latex
-
-    \newpage
 
 Su código:
 
@@ -607,7 +591,13 @@ Además de esas cinco formas de numeración, también puedes usar paréntesis pa
     (1) Hola.
     (2) Adiós.
 
-En HTML, las tres listas anteriores son equivalentes. En LaTeX, o mejor dicho la versión PDF con que se generó este libro, la salida sí varía:
+En HTML, las tres listas anteriores son equivalentes. En LaTeX, o mejor dicho la versión PDF con que se generó este libro, el resultado varía (una razón más para tener ambas versiones a la mano):
+
+1. Hola.
+2. Adiós.
+
+1) Hola.
+2) Adiós.
 
 1) Hola.
 2) Adiós.
@@ -749,7 +739,7 @@ Un diccionario es un tipo de lista que se divide entre términos y sus definicio
 
 primer término.
     Esta es la definición del primer término.
-    Incluso si cambio de línea en la fuente, sigue estando en la misma línea de la definición.
+    Incluso si cambio de línea en el código, sigue estando en la misma línea de la definición.
 
 segundo término.
     He aquí el 2do término, con su definición correspondiente.
@@ -766,7 +756,7 @@ Y el código para las definiciones pasadas es:
 
     primer término.
         Esta es la definición del primer término.
-        Incluso si cambio de línea en la fuente, sigue estando en la misma línea de la definición.
+        Incluso si cambio de línea en el código, sigue estando en la misma línea de la definición.
 
     segundo término.
         He aquí el 2do término, con su definición correspondiente.
@@ -792,7 +782,7 @@ El texto preformateado es texto que no se convierte, aunque tenga símbolos de r
 
         Esto es código porque está indentado después de dos dos puntos.
 
-Si no dejas la línea vacía entre los dos dos puntos y la primer línea de código, no se verá como tal:
+Si no dejas la línea vacía entre los dos dos puntos y la primer línea de código, **no** se verá como tal:
 
 ::
     Esto debería ser código.
@@ -813,7 +803,7 @@ Enlaces externos
 
 
 
-Un enlace externo es un enlace que lleva a una dirección o sitio fuera de la propia documentación o el documento que estás realizando. Es decir, un enlace a cualquier URL que desees. Para Crear un enlace de este tipo podemos hacerlo de dos maneras: directa o indirectamente.
+Un enlace externo es aquel enlace que lleva a una dirección o sitio fuera del documento que estás realizando. Es decir, un enlace a una URL que desees. Podemos crear un enlace de este tipo de dos maneras: directa o indirectamente.
 
 
 
@@ -839,25 +829,19 @@ Por ejemplo, para ir al `sitio de Python <https://www.python.org/>`_ se utilizó
 Enlace indirecto
 ^^^^^^^^^^^^^^^^
 
-Si te parece que el texto con una URL embebida es difícil de leer puedes optar por crear un enlace mediante referencia (es decir, dividir el texto del enlace en dos).
-
-Esto se hace agregando un guión bajo a una palabra. Por ejemplo, podemos crear un enlace mediante la palabra Python_ (escrita como ``Python_``). No obstante, al generar el documento obtendrás una advertencia:
+Si te parece que el texto con una URL embebida es difícil de leer puedes optar por crear un enlace mediante referencia (otra forma de decirlo es que partiremos el enlace en dos). Esto se hace agregando un guión bajo a una palabra. Por ejemplo, podemos crear un enlace mediante la palabra Python_ (escrita como ``Python_``). No obstante, al generar el documento obtendrás una advertencia:
 
 .. code-block:: none
 
     WARNING: Unknown target name: "python".
 
-.. raw:: latex
-
-    \newpage
-
-Y eso es porque ya definimos el texto del enlace, pero no su destino. Para definir la referencia escribimos dos puntos (``..``), espacio, guión bajo, la palabra que definimos previamente, seguida de un símbolo de dos puntos, y finalizamos con la URL:
+Esto se debe a que hemos definido el texto a presentar mas no su destino. Para definirlo escribimos dos puntos (``..``), espacio, guión bajo, la palabra utilizada previamente, seguida de dos puntos (``:``), un espacio, para finalizar con la URL:
 
 .. code-block:: rst
 
     .. _Python: https://www.python.org/
 
-También podemos usar un `conjunto de palabras`_ para crear un enlace, siempre y cuando las encerremos entre acentos graves y sigamos finalizando con el guión bajo:
+También podemos usar un `conjunto de palabras`_ para crear un enlace, siempre y cuando las encerremos entre acentos graves y finalicemos con el guión bajo:
 
 .. code-block:: rst
 
@@ -901,6 +885,10 @@ Los enlaces internos son referencias que nos llevan a contenido dentro de nuestr
     Creación de la referencia del enlace interno:
     .. _enlace interno:
 
+.. raw:: latex
+
+    \newpage
+
 .. _enlace interno:
 
 Es decir, puedes colocar el texto ``.. _enlace interno:`` en cualquier lugar de tu documento donde quieras crear un `enlace interno`_ (alguna nota importante, un término que quieras resaltar, o algún punto que consideres de particular interés... no aquí sobre este párrafo). Y, posteriormente, donde sea que lo quieras utilizar, mandarlo llamar con el texto entre acentos graves y con el guión bajo al final.
@@ -912,15 +900,11 @@ Enlaces implícitos
 
 
 
-Dado que algunos puntos de interés obvios dentro de nuestro documento son los títulos, reST los reconoce como enlaces internos implícitos. Es decir, puedo enlazar a secciones de este capítulo simplemente encerrando los títulos entre acentos graves y con su guión bajo, como `diccionarios`_, o `párrafos y líneas en blanco`_, o `comentarios`_.
-
-Esos últimos tres enlaces no requirieron más código para su uso que el siguiente:
+Dado que algunos puntos de interés obvios dentro de nuestro documento son los títulos, reST los reconoce como enlaces internos implícitos. Es decir, puedo enlazar a secciones de este capítulo simplemente encerrando los títulos entre acentos graves y con su guión bajo, como `diccionarios`_, o `párrafos y líneas en blanco`_, o `comentarios`_. Esos últimos tres enlaces no requirieron más código para su uso que el siguiente:
 
 .. code-block:: rst
 
-    como `diccionarios`_, o `párrafos y líneas en blanco`_, o `comentarios`_.
-
-Recuerda: reST automáticamente te da acceso a los títulos para crear enlaces.
+    `diccionarios`_, o `párrafos y líneas en blanco`_, o `comentarios`_.
 
 
 
@@ -970,16 +954,14 @@ Y toda esa mezcla de ``-`` para separar filas, ``|`` para separar columnas, ``=`
 | F4C1      | F4C2 | F4C3 | F4C4        | F4C5        |
 +-----------+------+------+-------------+-------------+
 
+En este libro, generado en PDF a través de LaTeX, la tabla no cumple con las expectativas por dos problemas:
+
+1) ninguna de las tres celdas superiores parece encabezado, y
+2) la multicolumna tiene diferente alineación vertical respecto a las demás.
+
+No obstante, el editor en línea muestra los encabezados correctamente, tanto para la versión en HTML tanto como para su archivo exportado a PDF.
+
 Ahora bien, hay otra forma "más sencilla" de hacer tablas, aunque no nos permite hacer multifilas. Este tipo de tabla solo requiere que las columnas tengan ancho fijo, por ejemplo:
-
-================= =================
-Encabezado1       Encabezado2
-================= =================
-Fila 2, Columna 1 Fila 2, Columna 2
-Fila 3, Columna 1 Fila 3, Columna 2
-================= =================
-
-Para iniciar y terminar este tipo de tablas se requiere de líneas con símbolos de igual, separadas por espacios según las columnas que sean, y debajo del encabezado va otra igual. Fuera de esto, todas las columnas deben tener el mismo ancho y las columnas de iguales deben contenerlas:
 
 .. code-block:: rst
 
@@ -989,6 +971,15 @@ Para iniciar y terminar este tipo de tablas se requiere de líneas con símbolos
     Fila 2, Columna 1 Fila 2, Columna 2
     Fila 3, Columna 1 Fila 3, Columna 2
     ================= =================
+
+Para iniciar y terminar este tipo de tablas se requiere de líneas con símbolos de igual, separadas por espacios según las columnas que sean, y debajo del encabezado va otra igual. Fuera de esto, todas las columnas deben tener el mismo ancho y las columnas de iguales deben contenerlas. El código anterior genera la siguiente tabla:
+
+================= =================
+Encabezado1       Encabezado2
+================= =================
+Fila 2, Columna 1 Fila 2, Columna 2
+Fila 3, Columna 1 Fila 3, Columna 2
+================= =================
 
 En el momento que llegues a excederte en un elemento en alguna columna, tendrás una advertencia como la siguiente:
 
@@ -1003,7 +994,7 @@ En el momento que llegues a excederte en un elemento en alguna columna, tendrás
 
 En este caso, el documento se generará sin rastro de tu tabla. Aunque, sí, es bastante simple este formato, un solo elemento que exceda tu largo de columna inicial implica que luego tengas que extender manualmente todos los anteriores para dar el ancho fijo adecuado.
 
-En lugar de batallar, simplemente escucha mi consejo: utiliza `tablesgenerator.com`_, copia, pega, cambia la línea del encabezado, y sé feliz.
+En lugar de batallar, simplemente escucha mi consejo: utiliza el generador de `tablesgenerator.com`_, copia, pega, cambia la línea del encabezado, y sé feliz.
 
 
 

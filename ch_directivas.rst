@@ -19,7 +19,7 @@ Además, pueden tener opciones, mismas que se delimitan por ``:`` al inicio y al
 
             contenido
 
-Antes de empezar este capítulo es necesario informarte que no podrás probar varias de las directivas aquí mencionadas. Esto es porque requieren de archivos locales ubicados en la misma carpeta que tu archivo de reST. Y, sí, los editores en línea no cuentan con esa facilidad.
+Antes de empezar este capítulo es necesario informarte que no podrás probar varias de las directivas aquí mencionadas. Esto es porque requieren de archivos locales ubicados en la misma carpeta que tu archivo de reST. Y, no, los editores en línea no cuentan con esa facilidad.
 
 Una vez hecha la advertencia, la primer directiva que veremos es ``image``.
 
@@ -36,18 +36,20 @@ La directiva ``image`` se utiliza con un argumento obligatorio: el directorio o 
 
     .. image:: http://ramoscarlos.com/logo.png
 
-Con eso basta para que reST pueda ir por la imagen y colocarla en mi documento:
+Con eso basta para que reST pueda ir por la imagen y colocarla en el HTML final. No obstante, y dependiendo del ancho de tu pantalla, el editor en línea puede mostrar el contenido desbordado.
+
+Esto pasa porque reST no le hace ningún tipo de procesamiento o escalado a la imagen. Para este libro, aunque aún no se ha especificado ninguna opción, la imagen aparece del ancho de la línea (magia de LaTeX):
 
 .. image:: http://ramoscarlos.com/logo.png
 
-No obstante, dependiendo del ancho de tu pantalla, el contenido puede aparecer desbordado. Esto pasa porque reST no le hace ningún tipo de procesamiento o escalado a la imagen. Aquí es donde entran las opciones, para poder darle formato a la imagen:
+Dado que el desbordamiento es molesto, te muestro las opciones que permiten darle formato a la imagen:
 
 :height: es el alto de la imagen, utilizado para reservar espacio vertical para la imagen. Cuando se utiliza en conjunto con la opción de ``scale``, ambos se aplican (por ejemplo, escala al 40% de 100px da 40px).
 :width: es el ancho de la imagen, y puede ser en términos absolutos o en porcentaje. De manera análoga a la altura, se combina con la opción de escala.
 :scale: es un factor de escalamiento, en porcentaje, que se aplicará a la imagen (el símbolo de porcentaje puede omitirse). El valor predeterminado es 100% (sin escalamiento).
 :align: la alineación de la imagen, puede tener los siguientes valores: ``top``, ``middle``, ``bottom``, ``left``, ``center``, o ``right``. Los primero tres valores hacen referencia a la alineación vertical, mientras que los últimos tres hacen referencia a su posición horizontal.
 :alt: es un texto alternativo a utilizar en caso de que no se pueda desplegar la imagen. También es texto que se lee por aplicaciones de asistencia visual.
-:target: sirve para hacer que la imagen sea un enlace hacia la URL o referencia de esta opción.
+:target: convierte la imagen en un enlace hacia la URL especificada.
 
 Después de haber visto las opciones, lo primero que probaremos es el uso de ``alt`` sobre una imagen inexistente. Por ejemplo:
 
@@ -58,19 +60,25 @@ Después de haber visto las opciones, lo primero que probaremos es el uso de ``a
 
 Al colocar el código de la imagen, lo único que se desplegará es el texto:
 
+.. raw:: latex
+
+    \begin{sphinxVerbatim}
+    Referencia a imagen inexistente.
+    \end{sphinxVerbatim}
+
 .. image:: http://yo-no-existo.com/ni-existire.gif
     :alt: Referencia a imagen inexistente.
 
-Ahora bien, a resolver el problema de la imagen que desborda los márgenes, ya sea de la página web o de la hoja de un libro físico. Para ello usamos la opción ``width``, con un valor del 100% del ancho, y no más. Además, aprovechamos para colocar un texto alternativo:
+Para resolver el problema de la imagen que desborda los márgenes usamos la opción ``width``, con un valor del 60% del ancho, y no más. Como no estamos especificando la alineación, la imagen se mostrará a la izquierda. Como buena práctica, trata de siempre colocar un texto alternativo:
 
 .. code-block:: rst
 
     .. image:: http://ramoscarlos.com/logo.png
-        :width: 100%
+        :width: 60%
         :alt: Logo de ramoscarlos.com
 
 .. image:: http://ramoscarlos.com/logo.png
-    :width: 100%
+    :width: 60%
     :alt: Logo de ramoscarlos.com
 
 
@@ -128,7 +136,7 @@ Código fuente (embebido)
 
 
 
-No solamente podemos incluir código como :ref:`texto preformateado <texto-preformateado>`, sino que podemos colocar código fuente formalmente, con resaltado de sintaxis, gracias a la directiva ``code``, que recibe como argumento el lenguaje en que el código está escrito.
+No solamente podemos incluir código como :ref:`texto preformateado <texto-preformateado>` sino que podemos colocar código fuente formalmente, con resaltado de sintaxis, gracias a la directiva ``code``, que recibe como argumento el lenguaje en que el código está escrito.
 
 Dado que el código se resalta con la librería Pygments_, los lenguajes disponibles son los mismos de esta librería... que son bastantes.
 
@@ -166,7 +174,7 @@ Donde el código detrás es:
 
 .. note::
 
-    Es posible que los editores en línea no carguen las sintaxis debido a que esto implica más procesamiento y es un poco más difícil de lograr. No obstante, a través del uso de Sphinx puedes ver este comportamiento, aunque eso está fuera del alcance de este libro.
+    El editor en línea no carga las sintaxis debido a que esto implica más procesamiento y es un poco más difícil de lograr.  Lo sé, es un tanto frustrante. Pero, ¿no te deja con ganas de probar Sphinx?
 
 
 
@@ -185,7 +193,7 @@ La directiva ``code`` tiene la opción ``number-lines``, la cual nos permite col
             return 0;
         }
 
-Lo que ahora genera un código como:
+Lo que ahora muestra el código como:
 
 .. code:: c
     :number-lines:
@@ -233,13 +241,11 @@ Es importante colocar al menos un espacio entre el número inicial y ``number-li
 Código fuente (archivo externo)
 -------------------------------
 
-Si prefieres insertar código de un archivo fuente en lugar de copiar y pegar fragmentos, entonces la directiva ``include`` es lo que buscas. Sí, lo sé, esto no lo puedes probar en línea.
+Si prefieres insertar código de un archivo fuente en lugar de copiar y pegar fragmentos entonces la directiva ``include`` es lo que buscas. Sí, lo sé, esto no lo puedes probar en línea.
 
 Su sintaxis es similar a la directiva ``image``, en el sentido de que su argumento requerido es la trayectoria del archivo relativo al archivo fuente (aunque aquí no se permiten recursos en línea).
 
-Recomiendo guardar el código fuente en un subdirectorio. En este libro se hace referencia al directorio ``src``. Para esta demostración tomé el código fuente de un ejemplo de alcance de la `documentación oficial de Python <https://docs.python.org/3/tutorial/classes.html#scopes-and-namespaces-example>`_ y lo guardé como ``demo.py`` en la carpeta antes mencionada.
-
-Para incluir el archivo simplemente usamos la directiva ``include`` con la trayectoria relativa al archivo:
+Recomiendo guardar el código fuente en un subdirectorio. En este libro se hace referencia al directorio ``src``. Para esta demostración tomé el código fuente de un ejemplo de alcance de la `documentación oficial de Python <https://docs.python.org/3/tutorial/classes.html#scopes-and-namespaces-example>`_ y lo guardé como ``demo.py`` en la carpeta antes mencionada. Para incluir el archivo  usamos la directiva ``include`` con la trayectoria relativa al archivo:
 
 .. code-block:: rst
 
@@ -249,21 +255,23 @@ Lo que nos incluye el código:
 
 .. include:: src/demo.py
 
-No obstante, eso imprime el código sin resaltado de sintaxis, comiéndose algunos saltos de línea... debido a que interpreta el texto siguiendo las reglas de reStructuredText (claro, no le hemos dicho lo contrario).
+Yo sé que eso que está justo arriba no tiene sentido. Se imprime el código, o un intento de, pero no hay resaltado de sintaxis, y también se eliminaron bastantes saltos de línea. Esto fue porque el interprete creyó que el texto seguía las reglas de reStructuredText (claro, no le hemos dicho lo contrario).
+
+La verdad es que la directiva ``include`` se puede utilizar para hacer un gran documento de reST en base a otros, y quizá esa era su intención, pero el uso más común de la directiva viene siendo incluir código (pido perdón a los diseñadores). Esto es, sin especificarle a ``include`` que estamos incluyendo código, el compilador cree que es más contenido reST que debe procesar.
 
 
 
 Opción ``code``
 ^^^^^^^^^^^^^^^
 
-Los errores de visualización del ejemplo anterior se pueden arreglar con la opción ``code``, que toma como argumento el lenguaje con el cual resaltar el archivo incluído. Recordemos que el resaltado se realiza gracias a Pygments, así que cualquier lenguaje que funciona para ``code``, funciona con la opción ``code`` del ``include``. Reescribiendo:
+Los errores de visualización del ejemplo anterior se pueden arreglar con la opción ``code`` (que vendría a trasformar la directiva ``include`` en una directiva ``code``, básicamente), que toma como argumento el lenguaje con el cual resaltar el archivo incluído. Recordemos que el resaltado se realiza gracias a Pygments, así que cualquier lenguaje que funciona para la directiva ``code`` funciona con la opción ``code`` del ``include``. Reescribiendo:
 
 .. code-block:: rst
 
     .. include:: src/demo.py
         :code: python
 
-Ya podemos ver nuestro archivo como código Python:
+Con esto ya podemos ver nuestro archivo como código Python (puedes comprobar, si así lo deseas, que el código que se muestra debajo es similar al código que parece no tener sentido):
 
 .. include:: src/demo.py
     :code: python
@@ -348,9 +356,7 @@ Y el resultado es similar a haber utilizado los números de línea:
 Opción ``tab-width``
 --------------------
 
-La opción ``tab-width`` nos permite establecer el ancho de las tabulaciones, que de manera predeterminada es 8 espacios.
-
-Por ejemplo, para establecer la tabulación a dos espacios usaríamos:
+La opción ``tab-width`` nos permite establecer el ancho de las tabulaciones, que de manera predeterminada es de ocho espacios (como en el código incluido previamente). Por ejemplo, para establecer la tabulación a dos espacios usaríamos:
 
 .. code-block:: rst
 
@@ -358,24 +364,13 @@ Por ejemplo, para establecer la tabulación a dos espacios usaríamos:
         :code: python
         :tab-width: 2
 
-.. include:: src/demo.py
-    :code: python
-    :tab-width: 2
-
-Si parece no funcionar, hay que revisar si nuestro archivo contiene tabulaciones...
-
-En este caso, esos puntos nos indican que el archivo usa espacios, no tabulaciones. Podemos cambiar cuatro espacios por una tabulación, para observar el efecto de este parámetro...
+Incluyendo el mismo archivo, se nota la diferencia de reducir los espacios:
 
 .. include:: src/demo.py
     :code: python
     :tab-width: 2
 
-En caso de no especificar este parámetro, el valor predeterminado es 8 espacios:
-
-.. include:: src/demo.py
-    :code: python
-
-Aunque, claro, mi recomendación es no usar este parámetro, porque es mejor usar cuatro espacios siempre.
+En caso de que este ajuste parezca no funcionar habrá que revisar si el archivo en realidad contiene tabulaciones... y si es así, ¡usa espacios! Es broma, es broma.
 
 
 
@@ -438,8 +433,6 @@ De esta manera, tanto en HTML como en LaTeX tenmos nuestra regla debajo:
 
     \noindent{\rule{\linewidth}{0.4pt}}
 
-También puedes incluir todo un archivo, mediante la opción ``:file: subdirectorio/archivo.html``, aunque sigue sin ser recomendado su uso.
-
 
 
 Amonestaciones
@@ -449,7 +442,7 @@ Amonestaciones
 
 Las amonestaciones son notas o temas especiales que aparecen marcados a lo largo del texto. En el caso de HTML, puedes imaginar cajas de colores: roja para errores, amarilla para advertencias, azules para información. En el caso de libros, puedes pensar en pequeños textos como en las series "Para Dummies", que incluyen consejos, advertencias, o simples notas a considerar.
 
-La amonestación no es una sola directiva, si no que son un conjunto, que son las siguientes: ``attention``, ``caution``, ``danger``, ``error``, ``hint``, ``important``, ``note``, ``tip``, y ``warning``.
+La amonestación no es una sola directiva, son un conjunto formado por las siguientes: ``attention``, ``caution``, ``danger``, ``error``, ``hint``, ``important``, ``note``, ``tip``, y ``warning``.
 
 Dependiendo de tu tema en HTML, cada una de estas amonestaciones tiene un estilo diferente, y se mandan llamar de la siguiente forma:
 
@@ -534,7 +527,7 @@ Sí, reStructuredText también sirve para lidiar con complejas ecuaciones matem�
 
         \frac{1}{2} + \frac{1}{4} + \ldots = \sum_{n=1}^{\infty} \left(\frac{1}{2}\right)^n = 1
 
-Lo que, por supuestos, se resuelve a:
+Lo que, por supuesto, se resuelve a:
 
 .. math::
 

@@ -19,8 +19,6 @@ Seguí buscando y me encontré con reST (por cierto, utilizaré tanto *reST* com
 
 Suficiente. Mi labor no es convencerte de las maravillas que reST puede hacer, solamente exponer. Sigamos.
 
-.. Sin más, continuemos.
-
 
 
 ¿Cómo leer este libro?
@@ -52,7 +50,7 @@ Reportando un problema
 
 
 
-En caso de que encuentres algún problema en la obra, puedes `crear un problema`_ en GitHub y trabajaré en resolverlo :D.
+En caso de que encuentres algún problema en la obra, puedes `crear un problema`_ en GitHub y trabajaré en resolverlo.
 
 
 
